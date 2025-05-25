@@ -4,7 +4,12 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd
+def load_data(file):
+    return pd.read_csv(file, sep='\t')
+def tabla_c1_lista_c2(df):
+    # Agrupa por c1 y concatena los valores de c2 ordenados y separados por ':'
+    return df.groupby('c1')['c2'].apply(lambda x: ':'.join(map(str, sorted(x)))).to_frame()
 
 def pregunta_10():
     """
@@ -20,3 +25,9 @@ def pregunta_10():
     D                   1:2:3:5:5:7
     E   1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
+    # Lee el archivo tbl0.tsv
+    df = load_data("files/input/tbl0.tsv")
+    # Devuelve una tabla que contenga c1 y una lista separada por ':' de los valores de la columna c2
+    return tabla_c1_lista_c2(df)
+
+

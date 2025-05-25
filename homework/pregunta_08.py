@@ -4,9 +4,16 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+import pandas as pd
+def load_data(file):
+    return pd.read_csv(file, sep='\t')
 
+def agregar_columna_suma(df):
+    df['suma'] = df['c0'] + df['c2']
+    return df
 
 def pregunta_08():
+    
     """
     Agregue una columna llamada `suma` con la suma de `c0` y `c2` al
     data frame que contiene el archivo `tbl0.tsv`.
@@ -22,3 +29,10 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
+     # Lee el archivo tbl0.tsv
+    df = load_data("files/input/tbl0.tsv")
+     # Agrega la columna suma al data frame
+    df = agregar_columna_suma(df)
+     # Devuelve el data frame con la columna suma
+    return df
+

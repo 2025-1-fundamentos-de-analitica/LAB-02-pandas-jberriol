@@ -4,7 +4,13 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+import pandas as pd
+def load_data(file):
+    return pd.read_csv(file, sep='\t')
 
+def agregar_ano_columna(df):
+    return df['c3'].apply(lambda x: x.split('-')[0])
+    
 
 def pregunta_09():
     """
@@ -23,3 +29,8 @@ def pregunta_09():
     39  39  E   5  1998-01-26  1998
 
     """
+    df = load_data("files/input/tbl0.tsv")
+    df['year'] = agregar_ano_columna(df)
+
+    return df
+
